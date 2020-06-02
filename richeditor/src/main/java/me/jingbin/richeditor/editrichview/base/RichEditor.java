@@ -592,6 +592,16 @@ public abstract class RichEditor extends WebView {
     }
 
     /**
+     * 添加字符串
+     * @param str
+     */
+    public void edAddStr(String str) {
+        exec("javascript:RE.saveRange();");
+        exec("javascript:RE.edAddStr('" + str + "');");
+        Log.e("edAddStr", str);
+    }
+
+    /**
      * 获取文本信息
      */
     public void edThishtml() {

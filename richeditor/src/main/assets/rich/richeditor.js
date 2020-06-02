@@ -386,6 +386,15 @@ var RE = {
     },
 
     /**
+     * 添加字符串
+     */
+     edAddStr:function edAddStr(strParam){
+        document.execCommand('insertHtml', false, strParam);
+        this.init();
+        this.getEditItem();
+     },
+
+    /**
      * 兼容Android6.0 删除图片不能删除“✘图片”的问题；缺点是添加图片后没有了光标
      */
     addLineLast: function addLineLast() {
