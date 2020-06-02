@@ -37,7 +37,6 @@ richEditor.edOutdata(mTitle, mContent);  // 回显内容
 ## Screenshots
 
 <img width="300" height=“470” src="https://github.com/youlookwhat/RichEditorView/blob/master/file/richeditor.jpeg"></img>
-<img width="300" height=“470” src="https://github.com/youlookwhat/RichEditorView/blob/master/file/richeditor.gif"></img>
 
 
 ## Project Origin
