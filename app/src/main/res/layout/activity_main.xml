@@ -18,6 +18,7 @@
         android:background="@color/colorPrimaryDark"
         app:subtitleTextAppearance="@style/TextAppearance.AppCompat.Medium"
         app:title="0字"
+        android:visibility="gone"
         app:titleTextAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
         app:titleTextColor="#ffffff" />
 

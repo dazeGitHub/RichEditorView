@@ -50,6 +50,12 @@ blockquote {
     margin-bottom: 1rem
 }
 
+.emojibox {
+    width:30px;
+    height:30px;
+    vertical-align: middle;
+}
+
 #upimg {
     position: absolute;
     right: 1rem;
@@ -94,7 +100,6 @@ blockquote {
 }
 
 .content #editor {
-    margin-top: 20px;
     outline: none;
 }
 

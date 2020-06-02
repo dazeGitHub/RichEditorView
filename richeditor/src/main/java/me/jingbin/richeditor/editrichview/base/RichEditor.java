@@ -556,8 +556,18 @@ public abstract class RichEditor extends WebView {
      */
     public void edAddimgsrc(String imgsrc) {
         exec("javascript:RE.saveRange();");
-        exec("javascript:RE.addimgsrc('" + imgsrc + "');");
+//        exec("javascript:RE.addimgsrc('" + imgsrc + "');");
+        exec("javascript:RE.addImgSrcRaw('" + imgsrc + "');");
         Log.e("imgsrc", imgsrc);
+    }
+
+    /**
+     * 添加 emoji
+     */
+    public void edAddEmojisrc(String imgsrc) {
+        exec("javascript:RE.saveRange();");
+        exec("javascript:RE.addEmojiSrc('" + imgsrc + "');");
+        Log.e("edAddEmojisrc", imgsrc);
     }
 
     /**

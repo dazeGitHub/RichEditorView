@@ -348,6 +348,40 @@ var RE = {
         }
     },
 
+
+    /**
+     * 添加图片，可以在文字中插入
+     */
+    addImgSrcRaw: function addImgSrcRaw(imgsrc2) {
+        var imgsrc = imgsrc2
+        var img = new Image()
+        img.src = imgsrc
+        img.onload = function() {
+            if (this.width > window.innerWidth) {
+                this.width = window.innerWidth
+//                var html = '<img style="width:' + this.width + 'px"  src="' + imgsrc2 + '"/><p><br></p>';
+                var html='<div style="width:100%;overflow: hidden;position:relative;"  contenteditable="false"> <img src=' +imgsrc+ ' style="width: 100%;"></div><p class="add"><br></p>'
+                document.execCommand('insertHtml', false, html)
+            }else{
+                 var html = '<img src="' + url + '" />';
+                 document.execCommand('insertHtml', false, html)
+            }
+            this.init()
+            this.getEditItem()
+        }
+    },
+
+    /**
+     * 添加 Emoji 表情
+     */
+    addEmojiSrc: function addEmojiSrc(imgsrc2) {
+
+        var html = '<img class = "emojibox" src="' + imgsrc2 + '"/>';
+        document.execCommand('insertHtml', false, html);
+        this.init();
+        this.getEditItem();
+    },
+
     /**
      * 兼容Android6.0 删除图片不能删除“✘图片”的问题；缺点是添加图片后没有了光标
      */
