@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
                 richEditor.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        richEditor.edAddimgsrc(contentImageSrc);
+                        richEditor.edAddNetImg(contentImageSrc);
                     }
                 }, 70);
             }

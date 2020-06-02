@@ -5,6 +5,7 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.widget.Toast;
 
 
 import java.util.ArrayList;
@@ -281,6 +282,7 @@ public class SimpleRichEditor extends RichEditor {
                         new IBottomMenuItem.OnBottomItemClickListener() {
                             @Override
                             public boolean onItemClick(MenuItem item, boolean isSelected) {
+                                Log.e("TAG", "mLuBottomMenu onItemClick isSelected = " + isSelected);
                                 setBold();
                                 Log.e("onItemClick", item.getId() + "");
 

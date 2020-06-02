@@ -554,15 +554,36 @@ public abstract class RichEditor extends WebView {
     /**
      * 添加图片
      */
-    public void edAddimgsrc(String imgsrc) {
+    private void edAddImgRaw(String imgsrc) {
         exec("javascript:RE.saveRange();");
 //        exec("javascript:RE.addimgsrc('" + imgsrc + "');");
-        exec("javascript:RE.addImgSrcRaw('" + imgsrc + "');");
+        exec("javascript:RE.addImgSrc2('" + imgsrc + "');");
         Log.e("imgsrc", imgsrc);
     }
 
     /**
-     * 添加 emoji
+     * 添加网络图片
+     * @param url
+     */
+    public void edAddNetImg(String url) {
+        edAddImgRaw(url);
+    }
+
+    /**
+     * 添加本地图片
+     * @param fileAbsPath
+     */
+    public void edAddLocalImg(String fileAbsPath) {
+        String tempPath = "file://" + fileAbsPath;
+        edAddImgRaw(tempPath);
+    }
+
+    public void edAddAssetImg(String imgsrc){ //前缀: file:///android_asset/
+        edAddImgRaw(imgsrc);
+    }
+
+    /**
+     * 添加 emoji，和添加图片不同的是限制了 Emoji 图片的宽高
      */
     public void edAddEmojisrc(String imgsrc) {
         exec("javascript:RE.saveRange();");

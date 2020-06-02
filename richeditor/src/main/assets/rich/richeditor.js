@@ -269,6 +269,7 @@ var RE = {
         //执行指令
         var _self = this;
         if (_self.commandSet.indexOf(command) !== -1) {
+//            alert("richeditor command = " + command)
             document.execCommand(command, false, null);
         } else {
             var value = '<' + command + '>';
@@ -326,12 +327,12 @@ var RE = {
     },
 
     /**
-     * 添加图片
+     * 添加图片，这个方法废弃不用
      */
-    addimgsrc: function addimgsrc(imgsrc2) {
+    addimgsrc: function addimgsrc(imgParam) {
 
         //var imgsrc = 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542190063251&di=1d6c3d89a7e8b57450065ec17b15ab4c&imgtype=0&src=http%3A%2F%2Fpic.90sjimg.com%2Fback_pic%2Fqk%2Fback_origin_pic%2F00%2F04%2F43%2F570fcd6809ce6f032a8e96ca480b7def.jpg'
-        var imgsrc = imgsrc2
+        var imgsrc = imgParam
         var img = new Image()
         img.src = imgsrc
         img.onload = function() {
@@ -352,18 +353,19 @@ var RE = {
     /**
      * 添加图片，可以在文字中插入
      */
-    addImgSrcRaw: function addImgSrcRaw(imgsrc2) {
-        var imgsrc = imgsrc2
+    addImgSrc2: function addImgSrc2(imgParam) {
+        var imgsrc = imgParam
         var img = new Image()
         img.src = imgsrc
         img.onload = function() {
             if (this.width > window.innerWidth) {
                 this.width = window.innerWidth
-//                var html = '<img style="width:' + this.width + 'px"  src="' + imgsrc2 + '"/><p><br></p>';
-                var html='<div style="width:100%;overflow: hidden;position:relative;"  contenteditable="false"> <img src=' +imgsrc+ ' style="width: 100%;"></div><p class="add"><br></p>'
+//                var html = '<img style="width:' + this.width + 'px"  src="' + imgParam + '"/><p><br></p>';
+                var html='<div style="width:100%;overflow: hidden;position:relative;"  contenteditable="false"> <img src=' + imgsrc + ' style="width: 100%;"></div><p class="add"><br></p>'
                 document.execCommand('insertHtml', false, html)
             }else{
-                 var html = '<img src="' + url + '" />';
+                 var html = '<img src="' + imgsrc + '" />';
+                 alert("addImgSrc2 html=" + html)
                  document.execCommand('insertHtml', false, html)
             }
             this.init()
@@ -371,12 +373,13 @@ var RE = {
         }
     },
 
+
     /**
      * 添加 Emoji 表情
      */
-    addEmojiSrc: function addEmojiSrc(imgsrc2) {
+    addEmojiSrc: function addEmojiSrc(imgParam) {
 
-        var html = '<img class = "emojibox" src="' + imgsrc2 + '"/>';
+        var html = '<img class = "emojibox" src="' + imgParam + '"/>';
         document.execCommand('insertHtml', false, html);
         this.init();
         this.getEditItem();
@@ -402,9 +405,9 @@ var RE = {
      * 替换封面
      * @param {*} imgsrc 
      */
-    upcover: function upcover(imgsrc2) {
+    upcover: function upcover(imgParam) {
         //        var imgsrc = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542190063251&di=1d6c3d89a7e8b57450065ec17b15ab4c&imgtype=0&src=http%3A%2F%2Fpic.90sjimg.com%2Fback_pic%2Fqk%2Fback_origin_pic%2F00%2F04%2F43%2F570fcd6809ce6f032a8e96ca480b7def.jpg"
-        var imgsrc = imgsrc2
+        var imgsrc = imgParam
 
         var imgs = document.getElementById("cover")
         imgs.src = imgsrc;
@@ -425,8 +428,8 @@ var RE = {
      * 回显示，用此回显还有问题
      */
     outdata: function outdata(title, htmljson) {
-        document.getElementsByClassName("title")[0].value = title
-        this.inputlength(title)
+//        document.getElementsByClassName("title")[0].value = title
+//        this.inputlength(title)
         document.getElementById("editor").innerHTML = htmljson
     },
 
@@ -437,10 +440,12 @@ var RE = {
      * 正确的：onclick="Getinfo('@item.email');"
      */
     thishtml: function thishtml() {
-        var title = document.getElementsByClassName("title")[0].value
-        var htmljson = document.getElementById("editor").innerHTML
-//        console.log(document.getElementById("editor").innerHTML)
-        AndroidInterface.getTitleAndHtml(title, htmljson);
+//        var title = document.getElementsByClassName("title")[0].value
+        var title = ""
+//        var htmljson = document.getElementById("editor").innerHTML
+        var htmlContent = document.getElementsByTagName('html')[0].innerHTML
+        console.log("htmlContent=" + htmlContent)
+        AndroidInterface.getTitleAndHtml(title, htmlContent);
     },
 
 
@@ -530,6 +535,7 @@ var RE = {
      * @param {*} height 
      */
     insertImage: function insertImage(url, id, width, height) {
+        alert("insertImage")
         var _self = this;
         var newWidth = 0,
             newHeight = 0;
