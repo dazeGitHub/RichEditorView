@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.ValueCallback;
 import android.webkit.WebView;
 import android.widget.Toast;
 
@@ -24,13 +23,14 @@ import org.jsoup.select.Elements;
 import me.jingbin.richeditor.bottomlayout.LuBottomMenu;
 import me.jingbin.richeditor.editrichview.SimpleRichEditor;
 import me.jingbin.richeditor.editrichview.base.RichEditor;
+import me.jingbin.richeditorview.tools.EmojiUtils;
 import me.jingbin.richeditorview.tools.KeyBoardListener;
 import me.jingbin.richeditorview.tools.Tools;
 
 public class Main2Activity extends AppCompatActivity {
 
     private final String contentImageSrc = "https://upload-images.jianshu.io/upload_images/15152899-e1a43b1cca2a4d58.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp";
-    private final String assetImageSrc = "[嘻嘻]"; // file:///android_asset/images/bama002.png";
+    private final String assetImageSrc = ":八马_哼:"; //:八马_哼        //[嘻嘻]        // file:///android_asset/images/bama002.png";
     private final String emojiImageSrc = "https://gitee.com/mayundaze/img_bed/raw/master/bama001.png";
     private final String atSomebodyStr = "@张三&nbsp"; //直接加空格不好使
 
@@ -108,12 +108,14 @@ public class Main2Activity extends AppCompatActivity {
                 resultStr = sb.toString();
                 Log.e("RichEdit", "得到 resultStr = \n" + resultStr);
 
+                resultStr = EmojiUtils.instance.replaceImgLabel2Bama(resultStr);
+
                 final String finalResultStr = resultStr;
                 richEditor.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         if (isShowSourceDialog) {
-                            Tools.show(richEditor, title, content, "保存", "取消", new DialogInterface.OnClickListener() {
+                            Tools.show(richEditor, title, finalResultStr, "保存", "取消", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     mTitle = title;
@@ -138,6 +140,7 @@ public class Main2Activity extends AppCompatActivity {
                 richEditor.postDelayed(new Runnable() {
                     @Override
                     public void run() {
+
                         richEditor.edAddEmojisrc(assetImageSrc);
                     }
                 }, 70);
@@ -154,6 +157,16 @@ public class Main2Activity extends AppCompatActivity {
                         richEditor.edAddStr(atSomebodyStr);
                     }
                 }, 70);
+            }
+        });
+
+        findViewById(R.id.btn_test_emoji).setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                String inputStr = "啦啦啦<img class=\"emojibox\" src=\"https://bbs.78dm.net/assets/f1a0e8de/images/smileys/bama001.png\">哈哈银行";
+                String resultStr = EmojiUtils.instance.replaceImgLabel2Bama(inputStr);
+                Log.e("TAG", "resultStr = " + resultStr);
             }
         });
     }
@@ -181,8 +194,10 @@ public class Main2Activity extends AppCompatActivity {
                 break;
             case R.id.actionbar_show:
                 if (!TextUtils.isEmpty(mContent)) {
-                    // 回显 标题和内容
-                    richEditor.edOutdata(mContent);
+
+                    String resultStr = EmojiUtils.instance.replaceBama2ImgLabel(mContent);
+                    richEditor.edOutdata(resultStr);    // 回显 标题和内容
+
 //                    richEditor.loadUrl("file:///android_asset/rich/editor_default.html");
 //                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
 //                        richEditor.evaluateJavascript("document.getElementById('editor').innerHTML='" + "Hello" + "'", new ValueCallback<String>() {

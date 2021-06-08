@@ -56,4 +56,14 @@
         android:layout_marginTop="180dp"
         />
 
+    <Button
+        android:id="@+id/btn_test_emoji"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:text="测试正则表达式"
+        android:layout_below="@id/btn_add_at_sb"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="80dp"
+        />
+
 </RelativeLayout>

@@ -50,12 +50,6 @@ blockquote {
     margin-bottom: 1rem
 }
 
-.emojibox {
-    width:30px;
-    height:30px;
-    vertical-align: middle;
-}
-
 #upimg {
     position: absolute;
     right: 1rem;
@@ -249,4 +243,11 @@ button{outline:none;}
 
 #editor img {
     width: 100%;
+}
+
+#editor .emojibox{
+    width:30px;
+    height:30px;
+    vertical-align: middle;
+    display:inline-block;
 }

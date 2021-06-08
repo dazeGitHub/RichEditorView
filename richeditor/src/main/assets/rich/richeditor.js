@@ -382,7 +382,18 @@ var RE = {
      */
     addEmojiSrc: function addEmojiSrc(imgParam) {
 
-        var html = '<img class = "emojibox" src="' + imgParam + '"/>';
+//        alert("function addEmojiSrc imgParam = " + imgParam)
+        var imgResult = imgParam
+
+        for (var key of bama_map.keys()) {
+            if(imgParam.indexOf(key) != -1){
+                imgResult = imgResult.replace(key,bama_map.get(key))
+            }
+        }
+
+//        alert("function addEmojiSrc imgResult = " + imgResult)
+
+        var html = '<img class = "emojibox" src="' + imgResult + '"/>';
         document.execCommand('insertHtml', false, html);
         this.init();
         this.getEditItem();
