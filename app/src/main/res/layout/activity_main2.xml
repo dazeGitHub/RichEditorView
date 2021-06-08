@@ -9,7 +9,7 @@
 
 <!-- 这个布局不能变，否则有键盘 bug -->
 
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="54dp"
