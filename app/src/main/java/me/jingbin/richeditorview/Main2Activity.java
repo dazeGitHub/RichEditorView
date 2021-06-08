@@ -32,7 +32,7 @@ public class Main2Activity extends AppCompatActivity {
     private final String contentImageSrc = "https://upload-images.jianshu.io/upload_images/15152899-e1a43b1cca2a4d58.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp";
     private final String assetImageSrc = "[嘻嘻]"; // file:///android_asset/images/bama002.png";
     private final String emojiImageSrc = "https://gitee.com/mayundaze/img_bed/raw/master/bama001.png";
-    private final String atSomebodyStr = "@张三";
+    private final String atSomebodyStr = "@张三&nbsp"; //直接加空格不好使
 
     private SimpleRichEditor richEditor;
     private LuBottomMenu luBottomMenu;
