@@ -3,9 +3,10 @@ package me.jingbin.richeditor.bottomlayout.menuitem;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Parcel;
-import android.support.annotation.NonNull;
 import android.view.Gravity;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 
 import me.jingbin.richeditor.bottomlayout.logiclist.MenuItem;
 

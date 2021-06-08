@@ -2,11 +2,12 @@ package me.jingbin.richeditor.editrichview;
 
 import android.content.Context;
 import android.os.Build;
-import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.Toast;
 
+
+import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;

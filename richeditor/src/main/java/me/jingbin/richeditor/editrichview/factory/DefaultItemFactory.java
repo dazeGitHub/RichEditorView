@@ -1,7 +1,8 @@
 package me.jingbin.richeditor.editrichview.factory;
 
 import android.content.Context;
-import android.support.annotation.DrawableRes;
+
+import androidx.annotation.DrawableRes;
 
 import me.jingbin.richeditor.R;
 import me.jingbin.richeditor.bottomlayout.api.IBottomMenuItem;

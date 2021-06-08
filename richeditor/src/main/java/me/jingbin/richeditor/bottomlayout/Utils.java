@@ -2,9 +2,10 @@ package me.jingbin.richeditor.bottomlayout;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.support.annotation.FloatRange;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
+
+import androidx.annotation.FloatRange;
 
 
 /**

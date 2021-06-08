@@ -7,13 +7,14 @@ import android.graphics.Paint;
 import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 
+
+import androidx.annotation.RequiresApi;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;

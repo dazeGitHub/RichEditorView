@@ -1,7 +1,7 @@
 package me.jingbin.richeditor.editrichview;
 
 
-import android.support.v4.util.ArraySet;
+import android.util.ArraySet;
 
 /**
  * ID 管理类

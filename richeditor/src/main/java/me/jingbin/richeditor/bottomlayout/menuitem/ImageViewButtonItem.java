@@ -6,9 +6,10 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.annotation.NonNull;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+
+import androidx.annotation.NonNull;
 
 import me.jingbin.richeditor.bottomlayout.api.IBottomMenuItem;
 import me.jingbin.richeditor.bottomlayout.logiclist.MenuItem;
