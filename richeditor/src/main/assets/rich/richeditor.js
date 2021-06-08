@@ -361,7 +361,10 @@ var RE = {
             if (this.width > window.innerWidth) {
                 this.width = window.innerWidth
 //                var html = '<img style="width:' + this.width + 'px"  src="' + imgParam + '"/><p><br></p>';
-                var html='<div style="width:100%;overflow: hidden;position:relative;"  contenteditable="false"> <img src=' + imgsrc + ' style="width: 100%;"></div><p class="add"><br></p>'
+//                var html='<div style="width:100%;overflow: hidden;position:relative;"  contenteditable="false"> <img src=' + imgsrc + ' style="width: 100%;"></div><p class="add"><br></p>'
+                //如果是 Emoji, 则将字符串转换为链接
+
+                var html='<img src=' + imgsrc + '><p class="add"><br></p>'
                 document.execCommand('insertHtml', false, html)
             }else{
                  var html = '<img src="' + imgsrc + '" />';
@@ -436,10 +439,10 @@ var RE = {
     /**
      * 回显示，用此回显还有问题
      */
-    outdata: function outdata(title, htmljson) {
+    outdata: function outdata(htmlStr) { //title,
 //        document.getElementsByClassName("title")[0].value = title
 //        this.inputlength(title)
-        document.getElementById("editor").innerHTML = htmljson
+        document.getElementById("editor").innerHTML = htmlStr
     },
 
 

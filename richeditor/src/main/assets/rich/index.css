@@ -240,3 +240,13 @@ button{outline:none;}
 /*#editor p {
     display: inline;
 }*/
+
+.img_outer_div {
+    width:100%;
+    overflow: hidden;
+    position:relative;
+}
+
+#editor img {
+    width: 100%;
+}

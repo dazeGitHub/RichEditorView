@@ -612,9 +612,10 @@ public abstract class RichEditor extends WebView {
     /**
      * 回显
      */
-    public void edOutdata(String title, String htmljson) {
+    public void edOutdata(String htmlStr) {//String title,
         exec("javascript:RE.saveRange();");
-        exec("javascript:RE.outdata('" + title + "', '" + htmljson + "');");
+//        exec("javascript:RE.outdata('" + title + "', '" + htmljson + "');");
+        exec("javascript:RE.outdata('" + htmlStr + "');");
     }
 
     /**

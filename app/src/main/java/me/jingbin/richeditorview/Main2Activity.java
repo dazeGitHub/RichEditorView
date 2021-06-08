@@ -1,6 +1,7 @@
 package me.jingbin.richeditorview;
 
 import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -10,8 +11,15 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.ValueCallback;
+import android.webkit.WebView;
 import android.widget.Toast;
 
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import me.jingbin.richeditor.bottomlayout.LuBottomMenu;
 import me.jingbin.richeditor.editrichview.SimpleRichEditor;
@@ -22,7 +30,7 @@ import me.jingbin.richeditorview.tools.Tools;
 public class Main2Activity extends AppCompatActivity {
 
     private final String contentImageSrc = "https://upload-images.jianshu.io/upload_images/15152899-e1a43b1cca2a4d58.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp";
-    private final String assetImageSrc = "file:///android_asset/images/bama002.png";
+    private final String assetImageSrc = "[嘻嘻]"; // file:///android_asset/images/bama002.png";
     private final String emojiImageSrc = "https://gitee.com/mayundaze/img_bed/raw/master/bama001.png";
     private final String atSomebodyStr = "@张三";
 
@@ -33,7 +41,7 @@ public class Main2Activity extends AppCompatActivity {
     private String mTitle = "";
     private String mContent = "";
 
-    private boolean isShowDialog = false;
+    private boolean isShowSourceDialog = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +61,9 @@ public class Main2Activity extends AppCompatActivity {
         setSupportActionBar(mToolbar);
         mToolbar.setOverflowIcon(ContextCompat.getDrawable(this, R.mipmap.actionbar_more));
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            WebView.setWebContentsDebuggingEnabled(true);
+        }
 
         richEditor.setLuBottomMenu(luBottomMenu);
 
@@ -82,23 +93,37 @@ public class Main2Activity extends AppCompatActivity {
 
             @Override
             public void onGetTitleContent(final String title, final String content) {
-                Log.e("RichEdit", "---获取标题：" + title);
-                Log.e("RichEdit", "---获取内容：" + content);
+                Log.e("RichEdit", "---获取标题: \n" + title);
+                Log.e("RichEdit", "---获取内容: \n" + content);
+
+                String resultStr = "";
+                StringBuilder sb = new StringBuilder();
+                Document docObj = Jsoup.parse(content);
+                Elements elements = docObj.select("#editor");
+
+                for (Element element : elements) {
+                    sb.append(element.html());
+                }
+
+                resultStr = sb.toString();
+                Log.e("RichEdit", "得到 resultStr = \n" + resultStr);
+
+                final String finalResultStr = resultStr;
                 richEditor.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        if (isShowDialog) {
+                        if (isShowSourceDialog) {
                             Tools.show(richEditor, title, content, "保存", "取消", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     mTitle = title;
-                                    mContent = content;
+                                    mContent = finalResultStr;
                                     Toast.makeText(Main2Activity.this, "保存成功", Toast.LENGTH_SHORT).show();
                                 }
                             });
                         } else {
                             mTitle = title;
-                            mContent = content;
+                            mContent = finalResultStr;
                             Toast.makeText(Main2Activity.this, "保存成功", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -143,21 +168,30 @@ public class Main2Activity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.actionbar_get:
-                isShowDialog = true;
+                isShowSourceDialog = true;
                 richEditor.edThishtml();
                 break;
             case R.id.actionbar_clear:
-                richEditor.edOutdata("", "");
+                richEditor.edOutdata( "");
                 mToolbar.setTitle("0字");
                 break;
             case R.id.actionbar_save:
-                isShowDialog = false;
+                isShowSourceDialog = false;
                 richEditor.edThishtml();
                 break;
             case R.id.actionbar_show:
                 if (!TextUtils.isEmpty(mContent)) {
                     // 回显 标题和内容
-                    richEditor.edOutdata(mTitle, mContent);
+                    richEditor.edOutdata(mContent);
+//                    richEditor.loadUrl("file:///android_asset/rich/editor_default.html");
+//                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+//                        richEditor.evaluateJavascript("document.getElementById('editor').innerHTML='" + "Hello" + "'", new ValueCallback<String>() {
+//                            @Override
+//                            public void onReceiveValue(String value) {
+//
+//                            }
+//                        });
+//                    }
                 }
                 break;
             default:

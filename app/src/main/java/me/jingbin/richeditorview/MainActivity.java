@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
                 richEditor.edThishtml();
                 break;
             case R.id.actionbar_clear:
-                richEditor.edOutdata("", "");
+                richEditor.edOutdata( "");
                 mToolbar.setTitle("0字");
                 break;
             case R.id.actionbar_save:
@@ -158,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.actionbar_show:
                 if (!TextUtils.isEmpty(mTitle) || TextUtils.isEmpty(mContent)) {
                     // 回显 标题和内容
-                    richEditor.edOutdata(mTitle, mContent);
+                    richEditor.edOutdata(mContent); //mTitle,
                     if (!TextUtils.isEmpty(mContent)) {
                         mToolbar.setTitle(mContentLength + "字");
                     }
