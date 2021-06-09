@@ -21,9 +21,9 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation 'com.github.dazeGitHub:RichEditorView:1.2'
+//    implementation 'com.github.dazeGitHub:RichEditorView:1.2'
 
-//    implementation project(':richeditor')
+    implementation project(':richeditor')
     api 'com.google.code.gson:gson:2.8.6'
     api 'org.jsoup:jsoup:1.10.3'
 }

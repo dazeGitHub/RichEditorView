@@ -85,7 +85,7 @@ public class SimpleRichEditor extends RichEditor {
         mFreeItems = new ArrayList<>();
 
         addImage();
-        addProduct();
+//        addProduct();
         addTypefaceBranch(true, true, true, true, true);
         addLine();
         addUndo();

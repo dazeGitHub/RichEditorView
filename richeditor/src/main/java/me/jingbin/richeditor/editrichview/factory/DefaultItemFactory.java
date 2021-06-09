@@ -172,7 +172,7 @@ public class DefaultItemFactory extends BaseItemFactory<ImageViewButtonItem>{
             case (int) ItemIndex.INSERT_IMAGE:
                 return generateInsertImageItem(context,listener);
             case (int) ItemIndex.INSERT_PRODUCT:
-                return generateInsertProductItem(context,listener);
+//                return generateInsertProductItem(context,listener); //去掉第二个按钮
             case (int) ItemIndex.INSERT_LINE:
                 return generateInsertLineItem(context,listener);
             default:
